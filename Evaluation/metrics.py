@@ -589,7 +589,7 @@ def _compute_shannon_entropy(recommended_counter):
 
     # Ignore from the computation both ignored items and items with zero occurrence.
     # Zero occurrence items will have zero probability and will not change the result, butt will generate nans if used in the log
-    recommended_counter_mask = np.ones_like(recommended_counter, dtype = np.bool)
+    recommended_counter_mask = np.ones_like(recommended_counter, dtype = bool)
     recommended_counter_mask[recommended_counter == 0] = False
 
     recommended_counter = recommended_counter[recommended_counter_mask]
