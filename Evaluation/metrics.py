@@ -290,8 +290,8 @@ class _Global_Item_Distribution_Counter(_Metrics_Object):
     def __init__(self, n_items, ignore_items):
         super(_Global_Item_Distribution_Counter, self).__init__()
 
-        self.recommended_counter = np.zeros(n_items, dtype=np.float)
-        self.ignore_items = ignore_items.astype(np.int).copy()
+        self.recommended_counter = np.zeros(n_items, dtype= float)
+        self.ignore_items = ignore_items.astype(int).copy()
 
 
     def add_recommendations(self, recommended_items_ids):
@@ -302,7 +302,7 @@ class _Global_Item_Distribution_Counter(_Metrics_Object):
 
         recommended_counter = self.recommended_counter.copy()
 
-        recommended_counter_mask = np.ones_like(recommended_counter, dtype = np.bool)
+        recommended_counter_mask = np.ones_like(recommended_counter, dtype = bool)
         recommended_counter_mask[self.ignore_items] = False
 
         recommended_counter = recommended_counter[recommended_counter_mask]
@@ -371,7 +371,7 @@ class Items_In_GT(_Metrics_Object):
         URM_test.eliminate_zeros()
 
         self.interaction_in_GT_counter = np.ediff1d(sps.csc_matrix(URM_test).indptr)
-        self.ignore_items = ignore_items.astype(np.int).copy()
+        self.ignore_items = ignore_items.astype(int).copy()
 
     def add_recommendations(self, recommended_items_ids):
         pass
@@ -396,7 +396,7 @@ class Users_In_GT(_Metrics_Object):
         URM_test.eliminate_zeros()
 
         self.interaction_in_GT_counter = np.ediff1d(sps.csr_matrix(URM_test).indptr)
-        self.ignore_users = ignore_users.astype(np.int).copy()
+        self.ignore_users = ignore_users.astype(int).copy()
 
     def add_recommendations(self, recommended_items_ids):
         pass
@@ -425,7 +425,7 @@ class Coverage_User(_Metrics_Object):
 
     def __init__(self, n_users, ignore_users):
         super(Coverage_User, self).__init__()
-        self.users_mask = np.zeros(n_users, dtype=np.bool)
+        self.users_mask = np.zeros(n_users, dtype=bool)
         self.n_ignore_users = len(ignore_users)
 
     def add_recommendations(self, recommended_items_ids, user_id):
@@ -454,7 +454,7 @@ class Coverage_User_HIT(_Metrics_Object):
 
     def __init__(self, n_users, ignore_users):
         super(Coverage_User_HIT, self).__init__()
-        self.users_mask = np.zeros(n_users, dtype=np.bool)
+        self.users_mask = np.zeros(n_users, dtype=bool)
         self.n_ignore_users = len(ignore_users)
 
     def add_recommendations(self, is_relevant, user_id):
